@@ -1,3 +1,1 @@
-console.log('Hello TypeScript!');
-
-/// checking git 
+console.log('Hey TypeScript!');
