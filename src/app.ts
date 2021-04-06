@@ -20,3 +20,11 @@ const pizza = {
 };
 
 console.log(pizza.getName());
+
+
+function mulitply( a: number, b = 25) { /// default parameters
+
+  return a * b;
+}
+console.log(mulitply(5, 25)); /// send both parameters
+console.log(mulitply(5)); // send one parameter and use default
