@@ -69,3 +69,17 @@ const newToppings = ['pepperoni'];
 const allToppings = [...toppings3, ...newToppings]; 
 
 console.log(allToppings);
+
+// object spread operator
+
+const pizza4 = {
+  name: 'Pepperoni'
+};
+
+const toppings4 = ['pepperoni'];
+
+const order = {   ...pizza4,  toppings4 };
+
+
+const finalOrder = {...order}
+console.log(finalOrder);
