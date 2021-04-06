@@ -28,3 +28,22 @@ function mulitply( a: number, b = 25) { /// default parameters
 }
 console.log(mulitply(5, 25)); /// send both parameters
 console.log(mulitply(5)); // send one parameter and use default
+
+const pizza2 = {
+  name: 'Pepperoni',
+  price: 15,
+  getName() {
+    return this.name;
+  }
+};
+
+
+const toppings2 = ['pepperoni'];
+
+// const order = { pizza2, toppings2 }; /// create object with other objects
+
+function createOrder(pizza2: any , toppings2: any) {
+  return { pizza2, toppings2 };
+}
+
+console.log(createOrder(pizza2,toppings2));
