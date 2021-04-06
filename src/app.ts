@@ -83,3 +83,30 @@ const order = {   ...pizza4,  toppings4 };
 
 const finalOrder = {...order}
 console.log(finalOrder);
+
+// Destructing Arrays and Objects
+
+const pizza5 = {
+  name5: 'Pepperoni',
+  toppings5: ['pepperoni']
+};
+
+function order5({ name5: pizzaName, toppings5: pizzaToppings}) {
+  return { pizzaName, pizzaToppings };
+}
+
+// const myOrder = order5(pizza5);
+const { pizzaName } = order5(pizza5);
+
+
+const toppingsArray = ['pepperoni', 'bacon', 'chili'];
+
+const [first, second, third] = toppingsArray;
+
+console.log(first, second, third);
+
+function logToppings([first, second, third]:any) {
+  console.log(first, second, third);
+}
+
+logToppings(toppingsArray);
