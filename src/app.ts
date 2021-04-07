@@ -15,3 +15,34 @@ function calculatePrice(cost: number, toppings: number) : number {
 }
 const cost: number = calculatePrice(pizzaCost, pizzaToppings);
 console.log(`Pizza costs: ${cost}`);  /// use ` for ES string and ' for others
+
+//String type, String Literal
+
+const coupon: string = 'pizza25'; // double or single quote
+
+function normalizeCoupon(code: string): string{
+  return code.toUpperCase();
+}
+
+// const couponMessage: string =  `
+//   I am a string
+// `;
+// multi line string
+
+const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
+
+console.log(couponMessage);
+
+// Boolean Type Boolean Literal
+
+const item: number = 5;
+
+function offerDiscout(orders: number): boolean{
+  return orders >= 3;
+}
+
+if (offerDiscout(item)) {
+  console.log(`You're entitiled to a discount!`);
+} else {
+  console.log(`Order 3 or more pizzas for a discount`);
+}
