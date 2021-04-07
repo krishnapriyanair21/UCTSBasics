@@ -15,3 +15,5 @@ function calculatePrice(cost: number, toppings: number) : number {
 }
 const cost: number = calculatePrice(pizzaCost, pizzaToppings);
 console.log(`Pizza costs: ${cost}`);  /// use ` for ES string and ' for others
+
+//String type, String Literal
