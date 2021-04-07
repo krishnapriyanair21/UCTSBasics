@@ -32,3 +32,17 @@ function normalizeCoupon(code: string): string{
 const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
 
 console.log(couponMessage);
+
+// Boolean Type Boolean Literal
+
+const item: number = 5;
+
+function offerDiscout(orders: number): boolean{
+  return orders >= 3;
+}
+
+if (offerDiscout(item)) {
+  console.log(`You're entitiled to a discount!`);
+} else {
+  console.log(`Order 3 or more pizzas for a discount`);
+}
