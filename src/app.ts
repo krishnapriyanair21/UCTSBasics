@@ -17,3 +17,18 @@ const cost: number = calculatePrice(pizzaCost, pizzaToppings);
 console.log(`Pizza costs: ${cost}`);  /// use ` for ES string and ' for others
 
 //String type, String Literal
+
+const coupon: string = 'pizza25'; // double or single quote
+
+function normalizeCoupon(code: string): string{
+  return code.toUpperCase();
+}
+
+// const couponMessage: string =  `
+//   I am a string
+// `;
+// multi line string
+
+const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
+
+console.log(couponMessage);
