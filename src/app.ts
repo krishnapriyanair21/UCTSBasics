@@ -50,4 +50,12 @@ console.log(coupon1); // after null
   // will not allow undefined for type string
 // change tsconfig.json strict to true
 
- 
+/* Union and Literal Types */
+let pizzaSize: string = 'small';
+function selectSize(size: 'small' | 'medium' | 'large'): void{
+  pizzaSize = size;
+} /// only size small medium or large allowed
+selectSize('medium');
+console.log(`Pizza size: ${pizzaSize}`);
+
+// works with numbers, bool, and enums as well
