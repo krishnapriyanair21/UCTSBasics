@@ -1,48 +1,131 @@
-/// number types, aruguments and functions
-      // Number, Boolean, String (Java types)
+/* any */
+let coupon; // implied any
 
-const pizzaCost = 10;  // infered type number
-let tempVar: number = 12; // explict type
+coupon = 25; // number
+coupon = '25'; // string
+coupon = true;  // bool
 
- // pizzaCost = '25'; /// type string is not assignable to number
+/* Implicit vs Explict Types */
+let implicitCoupon = 'pizza23';
+let explicitCoupon: string; 
 
-const pizzaToppings: number = 2;
 
-function calculatePrice(cost: number, toppings: number) : number {
-  return (cost + 1.5 * toppings)
-  /// return (cost + 1.5 * toppings).toString();  
-    // will throw error because return is assigned number
-}
-const cost: number = calculatePrice(pizzaCost, pizzaToppings);
-console.log(`Pizza costs: ${cost}`);  /// use ` for ES string and ' for others
+explicitCoupon = 'pizza25';
 
-//String type, String Literal
+/* Void Type */
+/// doesn't exist in Java Script
+let selectedTopping: string = 'pepperoni';
 
-const coupon: string = 'pizza25'; // double or single quote
+function selectTopping(topping: string): void { 
+  selectedTopping = topping;
+} /// impure function
 
-function normalizeCoupon(code: string): string{
-  return code.toUpperCase();
-}
+selectTopping('bacon');
+console.log(selectedTopping);
 
-// const couponMessage: string =  `
-//   I am a string
-// `;
-// multi line string
-
-const couponMessage: string = `Final coupon is ${normalizeCoupon(coupon)}`;
-
-console.log(couponMessage);
-
-// Boolean Type Boolean Literal
-
-const item: number = 5;
-
-function offerDiscout(orders: number): boolean{
-  return orders >= 3;
+/* Never Type */
+function orderError(error: string): never {
+  throw new Error(error);
+  // never going to return a value
+  // technically void 
+  // anything after line 28 will not execute
 }
 
-if (offerDiscout(item)) {
-  console.log(`You're entitiled to a discount!`);
-} else {
-  console.log(`Order 3 or more pizzas for a discount`);
+// orderError('Something went wrong');  // uncomment to check will not execute anything past line 35
+
+/* Null, Undefined, Strict Null checks */
+// change tsconfig.json strict to false
+
+// let coupon1:string = 'pizza20';
+let coupon1: string | null = 'pizza20'; 
+
+function removeCoupon(): void {
+  coupon1 = null;  // or undefined
 }
+
+console.log(coupon1);  // before null
+removeCoupon();
+console.log(coupon1); // after null 
+// change tsconfig.json strictNullChecks to true
+  // will not allow undefined for type string
+// change tsconfig.json strict to true
+
+/* Union and Literal Types */
+let pizzaSize: string = 'small';
+function selectSize(size: 'small' | 'medium' | 'large'): void{
+  pizzaSize = size;
+} /// only size small medium or large allowed
+selectSize('medium');
+console.log(`Pizza size: ${pizzaSize}`);
+
+// works with numbers, bool, and enums as well
+
+/* Function Types */
+function sumOrder(price: number, quantity: number): number{
+  return price * quantity;
+}
+// let sumOrder2: Function;
+let sumOrder2: (price: number, quantity: number) => number;
+sumOrder2 = (x, y) => x * y;
+
+const sum = sumOrder(25, 2);
+const sum2 = sumOrder2(25, 2);
+
+console.log(`Total Sum 1: ${sum}`);
+console.log(`Total Sum 2: ${sum2}`);
+
+/* Functions and Optional Arguments */
+ // continuation of last section
+
+let sumOrder3: (price: number, quantity?: number) => number;
+sumOrder3 = (x, y) => {
+  if (y) {
+    return x * y;
+  }
+  return x;
+}
+
+const sum3 = sumOrder3(25);
+console.log(`Total Sum 3: ${sum3}`);
+
+/* Typed Functions and Default Parameters */
+// continuation of last section
+let sumOrder4: (price: number, quantity?: number) => number;
+// sumOrder4 = (x, y) => {
+//   const q = y || 1;
+//   return x * q;
+// }
+
+sumOrder4 = (x, y = 1) =>  x * y; 
+
+const sum4 = sumOrder4(25);
+console.log(`Total Sum 4: ${sum4}`);
+
+/* Object Types */
+
+let pizza: { name: string, price: number, getName(): string } = {
+  name: 'Plain old Pepperoni',
+  price: 20,
+  getName() {
+    return pizza.name;
+  }
+};
+
+console.log(pizza.getName());
+
+/* Array Types and Generics */
+
+let sizes: string[];
+sizes = ['small', 'medium', 'large'];
+
+let sizesNum: number[];
+sizesNum = [1, 2, 3];
+
+let toppingsArr: Array<string>; // requires type in < >
+toppingsArr = ['pepperoni', 'tomato', 'bacon'];
+
+/* Tuple Types for Arrays */
+const pizzaTupleEx = ['Pepperoni', 20, '', 20, true]; /// still valid but not what we want
+
+let pizzaTuple: [string, number, boolean];
+pizzaTuple = ['Pepperoni', 20, true]; // order matters
