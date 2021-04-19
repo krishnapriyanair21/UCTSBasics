@@ -28,10 +28,25 @@
 /* Public and Private members */
 //continued
 
-class Pizza { // method default is public
+// class Pizza { // method default is public
+//   // name: string;
+//   toppings: string[] = [];
+//   constructor(private name: string) {}
+//   addTopping(topping: string) {
+//     this.toppings.push(topping);
+//   }
+// }
+// const pizza = new Pizza('Pepperoni');
+
+// pizza.addTopping('pepperoni');
+// // pizza. // cannot access name
+// console.log(pizza);
+
+/*  Readonly Members */
+class Pizza { 
   // name: string;
   toppings: string[] = [];
-  constructor(private name: string) {}
+  constructor(readonly name: string) {} // name cannot be changed after init
   addTopping(topping: string) {
     this.toppings.push(topping);
   }
@@ -39,5 +54,5 @@ class Pizza { // method default is public
 const pizza = new Pizza('Pepperoni');
 
 pizza.addTopping('pepperoni');
-// pizza. // cannot access name
+// pizza.name = 'ABC'; // cannot assign bc readonly
 console.log(pizza);
