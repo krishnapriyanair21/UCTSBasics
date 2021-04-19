@@ -9,7 +9,7 @@
 //   data: Pizza[]
 // }
 
-let pizza: Pizza;
+// let pizza: Pizza;
 
 // function createPizza(name: string, sizes: string[]): Pizza {
 //   return {
@@ -19,16 +19,39 @@ let pizza: Pizza;
 //   };
 // }
 
-pizza = createPizza('Pepperoni', ['small', 'medium']);
+// pizza = createPizza('Pepperoni', ['small', 'medium']);
 
 /* Interfaces with Function Types */
 // continues from last code
-interface Pizza {
-  name: string;
+// interface Pizza {
+//   name: string;
+//   sizes: string[];
+//   getAvailableSizes(): string[];
+// }
+// type getAvailableSizes = () => string[]; // observe difference bw type and interface
+
+// function createPizza(name: string, sizes: string[]): Pizza {
+//   return {
+//     name,
+//     sizes,
+//     getAvailableSizes() { // pass function with interface
+//       return this.sizes;
+//     }
+//   };
+// }
+
+/* Extending interfaces */
+// continued 
+
+interface Sizes{
   sizes: string[];
+}
+interface Pizza extends Sizes { // inherit properties from Sizes
+  name: string;
   getAvailableSizes(): string[];
 }
-// type getAvailableSizes = () => string[]; // observe difference bw type and interface
+
+let pizza: Pizza;
 
 function createPizza(name: string, sizes: string[]): Pizza {
   return {
@@ -39,3 +62,4 @@ function createPizza(name: string, sizes: string[]): Pizza {
     }
   };
 }
+pizza = createPizza('Pepperoni', ['small', 'medium']);
