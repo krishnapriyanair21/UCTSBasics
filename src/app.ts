@@ -43,11 +43,35 @@
 /* Extending interfaces */
 // continued 
 
+// interface Sizes{
+//   sizes: string[];
+// }
+// interface Pizza extends Sizes { // inherit properties from Sizes
+//   name: string;
+//   getAvailableSizes(): string[];
+// }
+
+// let pizza: Pizza;
+
+// function createPizza(name: string, sizes: string[]): Pizza {
+//   return {
+//     name,
+//     sizes,
+//     getAvailableSizes() { // pass function with interface
+//       return this.sizes;
+//     }
+//   };
+// }
+// pizza = createPizza('Pepperoni', ['small', 'medium']);
+
+/* Interfaces and Optional Properties */
+// continued
 interface Sizes{
   sizes: string[];
 }
 interface Pizza extends Sizes { // inherit properties from Sizes
   name: string;
+  toppings?: number;  // toppings is optional
   getAvailableSizes(): string[];
 }
 
@@ -57,9 +81,11 @@ function createPizza(name: string, sizes: string[]): Pizza {
   return {
     name,
     sizes,
-    getAvailableSizes() { // pass function with interface
+    // toppings: 1,  // may not be what we want
+    getAvailableSizes() { 
       return this.sizes;
     }
   };
 }
 pizza = createPizza('Pepperoni', ['small', 'medium']);
+pizza.toppings = 1;
