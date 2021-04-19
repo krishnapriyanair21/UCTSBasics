@@ -144,8 +144,41 @@
 // pizza.addTopping('pepperoni');
 
 /* Protected Members and Inheritance */
-abstract class Sizes {
-  constructor(protected sizes: string[]){} // can access sizes in inheriting classes
+// abstract class Sizes {
+//   constructor(protected sizes: string[]){} // can access sizes in inheriting classes
+    
+//   set availableSizes(sizes: string[]) {
+//     this.sizes = sizes;
+//   }
+  
+//   get availableSizes(){
+//     return this.sizes;
+//   }
+// }
+// class Pizza extends Sizes {
+//   toppings: string[] = [];
+//   constructor(readonly name: string, sizes: string[]) {
+//     super(sizes);
+//   }
+//   public updateSizes(sizes: string[]) {
+//     this.sizes = sizes; // if sizes is private in Sizes class then error
+//   }
+//   addTopping(topping: string) {
+//     this.toppings.push(topping);
+//   }
+// }
+
+// const pizza = new Pizza('Pepperoni', ['small', 'medium']);
+// console.log(pizza.availableSizes); // before change
+// pizza.updateSizes(['large']);
+// console.log(pizza.availableSizes); // after change
+
+/* Interface Contracts with "implements" */
+interface SizesInterface{
+  availableSizes: string[];
+}
+abstract class Sizes implements SizesInterface { // implement for interfaces inheritance
+  constructor(protected sizes: string[]){} 
     
   set availableSizes(sizes: string[]) {
     this.sizes = sizes;
@@ -155,20 +188,21 @@ abstract class Sizes {
     return this.sizes;
   }
 }
-class Pizza extends Sizes {
+interface PizzaInterface extends SizesInterface{
+  readonly name: string;
+  toppings: string[];
+  updateSizes(sizes: string[]): void;
+  addTopping(topping: string): void;
+}
+class Pizza extends Sizes implements PizzaInterface {
   toppings: string[] = [];
   constructor(readonly name: string, sizes: string[]) {
     super(sizes);
   }
   public updateSizes(sizes: string[]) {
-    this.sizes = sizes; // if sizes is private in Sizes class then error
+    this.sizes = sizes; 
   }
   addTopping(topping: string) {
     this.toppings.push(topping);
   }
 }
-
-const pizza = new Pizza('Pepperoni', ['small', 'medium']);
-console.log(pizza.availableSizes); // before change
-pizza.updateSizes(['large']);
-console.log(pizza.availableSizes); // after change
