@@ -89,7 +89,34 @@
 // console.log(pizza);
 
 /* Classes and Inheritance */
-class Sizes {
+// class Sizes {
+//   constructor(public sizes: string[]){}
+    
+//   set availableSizes(sizes: string[]) {
+//     this.sizes = sizes;
+//   }
+  
+//   get availableSizes(){
+//     return this.sizes;
+//   }
+// }
+
+// class Pizza extends Sizes {
+//   toppings: string[] = [];
+//   constructor(readonly name: string, public sizes: string[]) {
+//     super(sizes); // calls parent class
+//   }
+//   addTopping(topping: string) {
+//     this.toppings.push(topping);
+//   }
+// }
+
+// const pizza = new Pizza('Pepperoni', ['small', 'medium']);
+// console.log(pizza.availableSizes);
+// pizza.addTopping('pepperoni');
+
+/* Abstract Classes */
+abstract class Sizes {
   constructor(public sizes: string[]){}
     
   set availableSizes(sizes: string[]) {
@@ -101,6 +128,7 @@ class Sizes {
   }
 }
 
+// new Sizes(['small']); // error prone behavior (fixed with abstract class)
 class Pizza extends Sizes {
   toppings: string[] = [];
   constructor(readonly name: string, public sizes: string[]) {
@@ -114,3 +142,4 @@ class Pizza extends Sizes {
 const pizza = new Pizza('Pepperoni', ['small', 'medium']);
 console.log(pizza.availableSizes);
 pizza.addTopping('pepperoni');
+
