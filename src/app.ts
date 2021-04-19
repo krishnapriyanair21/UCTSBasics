@@ -1,23 +1,22 @@
-/* Type Aliases */
-type Size = 'small' | 'medium' | 'large';
-type Callback = (size: Size) => void;
+/* Creating Interfaces */
 
-let pizzaSize: Size = 'small'; // default small
-
-const selectSize: Callback = (x) => { 
-  pizzaSize = x;
+interface Pizza {
+  name: string;
+  sizes: string[];
 }
 
-selectSize('medium');
+// interface Pizzas{  // can use interface in making new interfaces
+//   data: Pizza[]
+// }
 
-/* Type Assertions */
+let pizza: Pizza;
 
-type Pizza = { name: string, toppings: number };
-const pizza: Pizza = { name: 'Blazing Inferno', toppings: 5 };
-const serialized = JSON.stringify(pizza);
-function getNameFromJSON(obj: string) {
-  // return (<Pizza>JSON.parse(obj)).name;  // old way of doing this
-  return (JSON.parse(obj) as Pizza).name; // newer way
+function createPizza(name: string, sizes: string[]): Pizza {
+  return {
+    name,
+    sizes
+    // deal: true // will cause error
+  };
 }
 
-getNameFromJSON(serialized);
+pizza = createPizza('Pepperoni', ['small', 'medium']);
