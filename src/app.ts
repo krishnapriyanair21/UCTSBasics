@@ -116,8 +116,36 @@
 // pizza.addTopping('pepperoni');
 
 /* Abstract Classes */
+// abstract class Sizes {
+//   constructor(public sizes: string[]){}
+    
+//   set availableSizes(sizes: string[]) {
+//     this.sizes = sizes;
+//   }
+  
+//   get availableSizes(){
+//     return this.sizes;
+//   }
+// }
+
+// // new Sizes(['small']); // error prone behavior (fixed with abstract class)
+// class Pizza extends Sizes {
+//   toppings: string[] = [];
+//   constructor(readonly name: string, public sizes: string[]) {
+//     super(sizes); // calls parent class
+//   }
+//   addTopping(topping: string) {
+//     this.toppings.push(topping);
+//   }
+// }
+
+// const pizza = new Pizza('Pepperoni', ['small', 'medium']);
+// console.log(pizza.availableSizes);
+// pizza.addTopping('pepperoni');
+
+/* Protected Members and Inheritance */
 abstract class Sizes {
-  constructor(public sizes: string[]){}
+  constructor(protected sizes: string[]){} // can access sizes in inheriting classes
     
   set availableSizes(sizes: string[]) {
     this.sizes = sizes;
@@ -127,12 +155,13 @@ abstract class Sizes {
     return this.sizes;
   }
 }
-
-// new Sizes(['small']); // error prone behavior (fixed with abstract class)
 class Pizza extends Sizes {
   toppings: string[] = [];
-  constructor(readonly name: string, public sizes: string[]) {
-    super(sizes); // calls parent class
+  constructor(readonly name: string, sizes: string[]) {
+    super(sizes);
+  }
+  public updateSizes(sizes: string[]) {
+    this.sizes = sizes; // if sizes is private in Sizes class then error
   }
   addTopping(topping: string) {
     this.toppings.push(topping);
@@ -140,6 +169,6 @@ class Pizza extends Sizes {
 }
 
 const pizza = new Pizza('Pepperoni', ['small', 'medium']);
-console.log(pizza.availableSizes);
-pizza.addTopping('pepperoni');
-
+console.log(pizza.availableSizes); // before change
+pizza.updateSizes(['large']);
+console.log(pizza.availableSizes); // after change
