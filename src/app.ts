@@ -1,23 +1,120 @@
-/* Type Aliases */
-type Size = 'small' | 'medium' | 'large';
-type Callback = (size: Size) => void;
+/* Creating Interfaces */
 
-let pizzaSize: Size = 'small'; // default small
+// interface Pizza {
+//   name: string;
+//   sizes: string[];
+// }
 
-const selectSize: Callback = (x) => { 
-  pizzaSize = x;
+// interface Pizzas{  // can use interface in making new interfaces
+//   data: Pizza[]
+// }
+
+// let pizza: Pizza;
+
+// function createPizza(name: string, sizes: string[]): Pizza {
+//   return {
+//     name,
+//     sizes
+//     // deal: true // will cause error
+//   };
+// }
+
+// pizza = createPizza('Pepperoni', ['small', 'medium']);
+
+/* Interfaces with Function Types */
+// continues from last code
+// interface Pizza {
+//   name: string;
+//   sizes: string[];
+//   getAvailableSizes(): string[];
+// }
+// type getAvailableSizes = () => string[]; // observe difference bw type and interface
+
+// function createPizza(name: string, sizes: string[]): Pizza {
+//   return {
+//     name,
+//     sizes,
+//     getAvailableSizes() { // pass function with interface
+//       return this.sizes;
+//     }
+//   };
+// }
+
+/* Extending interfaces */
+// continued 
+
+// interface Sizes{
+//   sizes: string[];
+// }
+// interface Pizza extends Sizes { // inherit properties from Sizes
+//   name: string;
+//   getAvailableSizes(): string[];
+// }
+
+// let pizza: Pizza;
+
+// function createPizza(name: string, sizes: string[]): Pizza {
+//   return {
+//     name,
+//     sizes,
+//     getAvailableSizes() { // pass function with interface
+//       return this.sizes;
+//     }
+//   };
+// }
+// pizza = createPizza('Pepperoni', ['small', 'medium']);
+
+/* Interfaces and Optional Properties */
+// continued
+// interface Sizes{
+//   sizes: string[];
+// }
+// interface Pizza extends Sizes { // inherit properties from Sizes
+//   name: string;
+//   toppings?: number;  // toppings is optional
+//   getAvailableSizes(): string[];
+// }
+
+// let pizza: Pizza;
+
+// function createPizza(name: string, sizes: string[]): Pizza {
+//   return {
+//     name,
+//     sizes,
+//     // toppings: 1,  // may not be what we want
+//     getAvailableSizes() { 
+//       return this.sizes;
+//     }
+//   };
+// }
+// pizza = createPizza('Pepperoni', ['small', 'medium']);
+// pizza.toppings = 1;
+
+/* Interfaces with Index Signatures */
+interface Sizes{
+  sizes: string[];
+}
+interface Pizza extends Sizes { // inherit properties from Sizes
+  name: string;
+  toppings?: number;  // toppings is optional
+  getAvailableSizes(): string[];
+  [key: number]: string; // give data index signature
+  // number stored as string (i.e "1")
+  // [key: string]: any; 
 }
 
-selectSize('medium');
+let pizza: Pizza;
 
-/* Type Assertions */
-
-type Pizza = { name: string, toppings: number };
-const pizza: Pizza = { name: 'Blazing Inferno', toppings: 5 };
-const serialized = JSON.stringify(pizza);
-function getNameFromJSON(obj: string) {
-  // return (<Pizza>JSON.parse(obj)).name;  // old way of doing this
-  return (JSON.parse(obj) as Pizza).name; // newer way
+function createPizza(name: string, sizes: string[]): Pizza {
+  return {
+    name,
+    sizes,
+    // toppings: 1,  // may not be what we want
+    getAvailableSizes() { 
+      return this.sizes;
+    }
+  };
 }
-
-getNameFromJSON(serialized);
+pizza = createPizza('Pepperoni', ['small', 'medium']);
+pizza[1] = 'xyz'
+pizza.toppings = 1;
