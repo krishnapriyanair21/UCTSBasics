@@ -1,15 +1,15 @@
 /* Understanding Classes and Constructors */
 // class version
-class Pizza {
-  name: string;
-  toppings: string[] = [];
-  constructor(name: string) {
-    this.name = name;
-  }
-  addTopping(topping: string) {
-    this.toppings.push(topping);
-  }
-}
+// class Pizza {
+//   name: string;
+//   toppings: string[] = [];
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+//   addTopping(topping: string) {
+//     this.toppings.push(topping);
+//   }
+// }
 // //function version
 // function Pizza(name: string) { // turn off strict mode in tsconfig
 //   this.name = name;
@@ -20,8 +20,24 @@ class Pizza {
 //   this.toppings.push(topping);
 // }
 
+// const pizza = new Pizza('Pepperoni');
+
+// pizza.addTopping('pepperoni');
+
+// console.log(pizza);
+/* Public and Private members */
+//continued
+
+class Pizza { // method default is public
+  // name: string;
+  toppings: string[] = [];
+  constructor(private name: string) {}
+  addTopping(topping: string) {
+    this.toppings.push(topping);
+  }
+}
 const pizza = new Pizza('Pepperoni');
 
 pizza.addTopping('pepperoni');
-
+// pizza. // cannot access name
 console.log(pizza);
