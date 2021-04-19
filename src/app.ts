@@ -43,16 +43,47 @@
 // console.log(pizza);
 
 /*  Readonly Members */
-class Pizza { 
-  // name: string;
+// class Pizza { 
+//   // name: string;
+//   toppings: string[] = [];
+//   constructor(readonly name: string) {} // name cannot be changed after init
+//   addTopping(topping: string) {
+//     this.toppings.push(topping);
+//   }
+// }
+// const pizza = new Pizza('Pepperoni');
+
+// pizza.addTopping('pepperoni');
+// // pizza.name = 'ABC'; // cannot assign bc readonly
+// console.log(pizza);
+
+/* Setters and Getters (Accessors) */
+class Sizes {
+  constructor(public sizes: string[]){}
+    
+  set availableSizes(sizes: string[]) {
+    this.sizes = sizes;
+  }
+  
+  get availableSizes(){
+    return this.sizes;
+  }
+}
+const sizes = new Sizes(['small', 'medium']);
+console.log(sizes.availableSizes); //invoke getter
+
+sizes.availableSizes = ['medium', 'large']; // invoke setter
+console.log(sizes.availableSizes); //invoke getter after change
+
+class Pizza {
   toppings: string[] = [];
-  constructor(readonly name: string) {} // name cannot be changed after init
+  constructor(readonly name: string) {}
   addTopping(topping: string) {
     this.toppings.push(topping);
   }
 }
+
 const pizza = new Pizza('Pepperoni');
 
 pizza.addTopping('pepperoni');
-// pizza.name = 'ABC'; // cannot assign bc readonly
 console.log(pizza);
