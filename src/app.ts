@@ -206,3 +206,17 @@ class Pizza extends Sizes implements PizzaInterface {
     this.toppings.push(topping);
   }
 }
+/* States Properties and Methods */
+// const date = +new Date();
+const date = Date.now();
+console.log(date);
+
+class Coupon{
+  static allowed = ['Pepperoni', 'Blazing Inferno'];
+  static create(perc: number) {
+    return `PIZZA_RESTAURANT_${perc}`;
+  }
+}
+
+console.log(Coupon.allowed);
+console.log(Coupon.create(25));
